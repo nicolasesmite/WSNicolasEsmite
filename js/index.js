@@ -1,6 +1,6 @@
 const email = document.getElementById("email")
 const password1 = document.getElementById("password1")
-const boton = document.getElementById("regBtn")
+const boton = document.getElementById("regBtn");
 
 boton.addEventListener("click", e=>{
     let entrar = false
@@ -9,11 +9,16 @@ boton.addEventListener("click", e=>{
         //alert("mail corto")
 
     }
+
     if(password1.value.length == 0 ){
         entrar = true
         //alert("contraseña corta")
+    }else{
+        localStorage.setItem("usuario_loggeado",email.value)
     }
+
     if (!entrar){
-        location.href = "pagina_principal.html"
+        location.href = "pagina_principal.html" 
     }
 })
+

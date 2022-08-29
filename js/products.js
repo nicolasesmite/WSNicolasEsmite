@@ -3,9 +3,8 @@ const URL_AUTOS = "https://japceibal.github.io/emercado-api/cats_products/101.js
 let categoriesAutosList = [];
 
 
-//función que recibe un array con los datos, y los muestra en pantalla a través el uso del DOM
 function showProductsList(categoriesAutosList){
-    console.log(categoriesAutosList.products)
+    //console.log(categoriesAutosList.products)
     let htmlContentToAppend = ""
 
     for(let i = 0; i < categoriesAutosList.products.length; i++){ 
@@ -32,6 +31,7 @@ function showProductsList(categoriesAutosList){
     document.getElementById("101").innerHTML = htmlContentToAppend
 
 }
+
 
 document.addEventListener("DOMContentLoaded", function(){
     getJSONData(URL_AUTOS).then(resultado => {

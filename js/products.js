@@ -1,26 +1,26 @@
 const URL_AUTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json"
 
-let categoriesAutosList = [];
+let categoriesList = [];
 
 
-function showProductsList(categoriesAutosList){
+function showProductsList(categoriesList){
     //console.log(categoriesAutosList.products)
     let htmlContentToAppend = ""
 
-    for(let i = 0; i < categoriesAutosList.products.length; i++){ 
+    for(let i = 0; i < categoriesList.products.length; i++){ 
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
-                    <img src="` + categoriesAutosList.products[i].image + `" alt="product image" class="img-thumbnail">
+                    <img src="` + categoriesList.products[i].image + `" alt="product image" class="img-thumbnail">
                 </div>
                 <div class="col">
                     <div class="d-flex w-100 justify-content-between">
                         <div class="mb-1">
-                        <h4>`+ categoriesAutosList.products[i].name+ ` `+ categoriesAutosList.products[i].currency +`-`+ categoriesAutosList.products[i].cost + `</h4> 
-                        <p> `+ categoriesAutosList.products[i].description +`</p> 
+                        <h4>`+ categoriesList.products[i].name+ ` `+ categoriesList.products[i].currency +`-`+ categoriesList.products[i].cost + `</h4> 
+                        <p> `+ categoriesList.products[i].description +`</p> 
                         </div>
-                        <small class="text-muted">` + categoriesAutosList.products[i].soldCount +` vendidos </small> 
+                        <small class="text-muted">` + categoriesList.products[i].soldCount +` vendidos </small> 
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@ function showProductsList(categoriesAutosList){
         </div>
         `
     }
-    document.getElementById("101").innerHTML = htmlContentToAppend
+    document.getElementById(localStorage.getItem("catID")).innerHTML = htmlContentToAppend
 
 }
 

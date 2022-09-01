@@ -16,6 +16,7 @@ function sortCategories(criteria, array){
             if ( a.name < b.name ){ return -1; }
             if ( a.name > b.name ){ return 1; }
             return 0;
+            
         });
     }else if (criteria === ORDER_DESC_BY_NAME){
         result = array.sort(function(a, b) {
@@ -25,6 +26,7 @@ function sortCategories(criteria, array){
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
         result = array.sort(function(a, b) {
+            
             let aCount = parseInt(a.productCount);
             let bCount = parseInt(b.productCount);
 

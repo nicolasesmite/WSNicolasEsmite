@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
     getJSONData(URL_AUTOS).then(function(resultado){
         if (resultado.status === "ok"){
             ProductsList = resultado.data
+            showProductsList();
             
         }
         else {

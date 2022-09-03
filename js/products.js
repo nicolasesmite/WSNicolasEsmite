@@ -1,4 +1,5 @@
-const URL_AUTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json"
+
+const URL_INDEX = ".json";
 const ORDER_ASC_BY_PRICE = "costA"
 const ORDER_DESC_BY_PRICE = "costD"
 const ORDER_DESC_BY_SOLDCOUNT = "soldCount"
@@ -86,7 +87,8 @@ function sortAndShowProducts(sortCriteria, ProductsArray){
 
 
 document.addEventListener("DOMContentLoaded", function(){
-    getJSONData(URL_AUTOS).then(function(resultado){
+
+    getJSONData((PRODUCTS_URL+localStorage.getItem("catID")+URL_INDEX)).then(function(resultado){
         if (resultado.status === "ok"){
             ProductsList = resultado.data
             showProductsList();
@@ -94,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         else {
             alert("JSON incorrecto")
+
         }
     })
 

@@ -1,10 +1,11 @@
-
+let CAT_ID = "";
 
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("autos").addEventListener("click", function() {
         localStorage.setItem("catID", 101);
-        window.location = "products.html"
+        window.location = "products.html";
+        CAT_ID = localStorage.getItem ("catID")
     }); 
 
     document.getElementById("juguetes").addEventListener("click", function() {

@@ -9,6 +9,9 @@ let ProductsList = [];
 let minCount = undefined;
 let maxCount = undefined;
 let aSoldCount = undefined;
+let CAT_ID = localStorage.getItem("catID");
+let URL_DE_PRODUCTOS = PRODUCTS_URL + CAT_ID + URL_INDEX; //generamos una cadena de tipo string donde podamos variar el enlace segun el catID
+
 
 function sortProducts(criteria, ListaDeProductos){
     let result = [];
@@ -68,7 +71,7 @@ function showProductsList(){
         }
     }
 
-    document.getElementById(localStorage.getItem("catID")).innerHTML = htmlContentToAppend
+    document.getElementById(CAT_ID).innerHTML = htmlContentToAppend
 
 }
 
@@ -88,7 +91,7 @@ function sortAndShowProducts(sortCriteria, ProductsArray){
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    getJSONData((PRODUCTS_URL+localStorage.getItem("catID")+URL_INDEX)).then(function(resultado){
+    getJSONData(URL_DE_PRODUCTOS).then(function(resultado){
         if (resultado.status === "ok"){
             ProductsList = resultado.data
             showProductsList();

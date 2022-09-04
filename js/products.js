@@ -48,8 +48,8 @@ function showProductsList(){
     let htmlContentToAppend = ""
     for(let i = 0; i < ProductsList.products.length; i++){ 
         //establecemos filtros de busqueda segun costo
-        if (((minCount == undefined) || (minCount != undefined && ProductsList.products[i].cost >= parseInt(minCount))) &&
-           ((maxCount == undefined) || (maxCount != undefined && ProductsList.products[i].cost <= parseInt(maxCount)))){
+        if (((minCount == undefined) || (minCount != undefined && ProductsList.products[i].cost >= minCount)) &&
+           ((maxCount == undefined) || (maxCount != undefined && ProductsList.products[i].cost <= maxCount))){
          htmlContentToAppend += `
          <div class="list-group-item list-group-item-action">
             <div class="row">
@@ -104,8 +104,22 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     document.getElementById("rangeFilterCount").addEventListener("click",function(){
-            minCount = document.getElementById("rangeFilterCountMin".value);
-            maxCount = document.getElementById("rangeFilterCountMax".value);
+            minCount = document.getElementById("rangeFilterCountMin").value;
+            maxCount = document.getElementById("rangeFilterCountMax").value;
+
+            if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
+                minCount = parseInt(minCount);
+            }
+            else{
+                minCount = undefined;
+            }
+    
+            if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
+                maxCount = parseInt(maxCount);
+            }
+            else{
+                maxCount = undefined;
+            }
     
             //traemos datos de input max,min
             showProductsList()

@@ -12,6 +12,11 @@ let aSoldCount = undefined;
 let CAT_ID = localStorage.getItem("catID");
 let URL_DE_PRODUCTOS = PRODUCTS_URL + CAT_ID + URL_INDEX; //generamos una cadena de tipo string donde podamos variar el enlace segun el catID
 
+function setProductId(id){
+    localStorage.setItem("ProductID", id);
+    window.location = "product-info.html"
+    location.href = "product-info.html"
+}
 
 function sortProducts(criteria, ListaDeProductos){
     let result = [];
@@ -51,7 +56,7 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && ProductsList.products[i].cost >= minCount)) &&
            ((maxCount == undefined) || (maxCount != undefined && ProductsList.products[i].cost <= maxCount))){
          htmlContentToAppend += `
-         <div class="list-group-item list-group-item-action">
+         <div div onclick="setProductId(${ProductsList.products[i].id})" class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` + ProductsList.products[i].image + `" alt="product image" class="img-thumbnail">

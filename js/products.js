@@ -56,7 +56,7 @@ function showProductsList(){
         if (((minCount == undefined) || (minCount != undefined && ProductsList.products[i].cost >= minCount)) &&
            ((maxCount == undefined) || (maxCount != undefined && ProductsList.products[i].cost <= maxCount))){
          htmlContentToAppend += `
-         <div div onclick="setProductId(${ProductsList.products[i].id})" class="list-group-item list-group-item-action">
+         <div onclick="setProductId(${ProductsList.products[i].id})" class="list-group-item list-group-item-action">
             <div class="row">
                 <div class="col-3">
                     <img src="` + ProductsList.products[i].image + `" alt="product image" class="img-thumbnail">

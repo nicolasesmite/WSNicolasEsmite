@@ -3,6 +3,11 @@ let URL_COMMENTS_PRODUCT = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("Pro
 let ProductInfo = [];
 let ProductComments = [];
 
+function setProductId(id){
+    localStorage.setItem("ProductID", id);
+    window.location = "product-info.html"
+    location.href = "product-info.html"
+}
 
 function showProductInfo(){
     let htmlContentToAppend = "" 
@@ -16,6 +21,12 @@ function showProductInfo(){
         <img src="${ProductInfo.images[i]}" alt="product image" class="img-thumbnail"></div>`
         
      }
+
+     for(let i = 0; i < ProductInfo.relatedProducts.length; i++){
+         htmlContentToAppend += `<div onclick="setProductId(${ProductInfo.relatedProducts[i].id})" class="list-group-item list-group-item-action">
+         <div> ${ProductInfo.relatedProducts[i].name} </div>
+         <div> <img src= "${ProductInfo.relatedProducts[i].image}" alt="product image" class = "col-3" </div>
+         </div>`} 
 
     document.getElementById("product_info").innerHTML = htmlContentToAppend
 
@@ -86,4 +97,3 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 })
-

@@ -16,9 +16,8 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 
-    document.getElementById("Usuario").innerHTML =  localStorage.getItem("usuario_loggeado")
-
     
-});
 
+    document.getElementById("Usuario").innerHTML =  localStorage.getItem("usuario_loggeado")
+});
 

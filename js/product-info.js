@@ -23,10 +23,14 @@ function showProductInfo(){
      }
 
      for(let i = 0; i < ProductInfo.relatedProducts.length; i++){
-         htmlContentToAppend += `<div onclick="setProductId(${ProductInfo.relatedProducts[i].id})" class="list-group-item list-group-item-action">
-         <div> ${ProductInfo.relatedProducts[i].name} </div>
-         <div> <img src= "${ProductInfo.relatedProducts[i].image}" alt="product image" class = "col-3" </div>
-         </div>`} 
+         console.log(ProductInfo.relatedProducts[i].id)
+         htmlContentToAppend += `<div class = "container">
+                                  <div onclick="setProductId(${ProductInfo.relatedProducts[i].id})" class="list-group-item list-group-item-action">
+                                    <div> ${ProductInfo.relatedProducts[i].name}
+                                      <div><img src= "${ProductInfo.relatedProducts[i].image}" alt="product image" class = "col-3"</div>
+                                    </div>
+                                  </div>
+                                 </div>`} 
 
     document.getElementById("product_info").innerHTML = htmlContentToAppend
 

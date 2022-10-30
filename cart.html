@@ -57,40 +57,60 @@
       </section>
       <div class="container col-12 justify-content-center" style="background-color: #5d74da;">
         <div>
-          <label><h3>Tipo de envío</h3></label>
-          <form required>
+          <h3>Tipo de envío</h3>
+          <form class="needs-validation">
+            <div>
             <input type="radio" id="express" name="courier" value="15" onclick="courierCost(15)">
             <label>Envío Express 2 a 5 dias (15%)</label><br>
             <input type="radio" id="premium" name="courier" value="7" onclick="courierCost(7)">
             <label>Envío Premium 5 a 8 dias (7%)</label><br>
             <input type="radio" id="normal" name="courier" value="5" onclick="courierCost(5)">
             <label>Envío Normal 12 a 15 dias (5%)</label>
+            </div>
+            <div id="invalid-feedback">
+            </div>
           </form>
         </div>
         <div>
           <label><h3>Dirección de envío</h3></label>
-          <form class="row col-4">
-            <label for="Calle">Calle:</label>
-            <input type="text" id="street" name="street"><br>
-            <label for="Numero">Número:</label>
-            <input type="text" id="number" name="number">
-            <label for="Esquina">Esquina:</label>
-            <input type="text" id="corner" name="corner">
+          <form class="row col-4 needs-validation" novalidate>
+            <div>
+              <label for="Calle" class="form-label">Calle:</label>
+              <input type="text" class="form-control" id="street" name="street" minlength="6" required><br>
+              <div class="invalid-feedback">
+                El nombre de Calle no es correcto
+              </div>
+            </div>
+            <div>
+              <label for="Numero" class="form-label">Número:</label>
+              <input type="text" class="form-control" id="number" name="number" minlength="3" required>
+              <div class="invalid-feedback">
+                El numero de apartamento no es correcto
+              </div>
+            </div>
+            <div>
+              <label for="Esquina" class="form-label">Esquina:</label>
+              <input type="text" class="form-control" id="corner" name="corner" minlength="6" required>
+              <div class="invalid-feedback">
+                El nombre de Esquina no es correcto
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">Finalizar Compra</button>
           </form>
         </div>
-        <div class ="container">
-          <div id="subTotal">
-          </div>
-          <br>
-          <div id="costoEnvio">
-            Total
-          </div>
-          <br>
-          <div id="total">
-            Total
-          </div>
-          <br>
+        <div class ="container" style="background-color: #1f369d" id="Costs">
         </div>
+        <div class="col-sm-12 position-relative">
+          <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" id="btnModalPagos"
+            data-bs-target="#modalPagos">Seleccionar metodo de pago</button>
+            <div class="invalid-tooltip" id="pagosErrAlert">
+              Debe seleccionar una forma de pago
+            </div>
+        </div>
+
+        
+
       </div>
     </div>
   </main>
@@ -105,6 +125,43 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="modal fade" id="modalPagos" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Metodos de Pago</h1>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div>
+          <input type="radio" id="Credito" name="Credito" value="Credito" onclick="disableForm('CuentaBancaria')">
+          <label>Tarjeta de Credito</label>
+        </div><hr>
+        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+          <label for="NumeroTarj" class="form-label">Numero de Tarjeta</label>
+          <input type="text" class="form-control" id="NumeroTarj" name="NumeroTarj" minlength="16" required>
+        </form>
+        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+          <label for="CodigoSeg" class="form-label">CCV</label>
+          <input type="text" class="form-control" id="CodigoSeg" name="CodigoSeg" minlength="3" required>
+        </form>
+        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+          <label for="Vencimiento" class="form-label">Vencimiento</label>
+          <input type="date" class="form-control" id="Vencimiento" name="Vencimiento" required>
+        </form>
+        <div>
+          <input type="radio" id="CuentaBanc" name="CuentaBancaria" value="CuentaBancaria" onclick="disableForm('CreditoTarj')">
+          <label>Cuenta Bancaria</label>
+        </div>
+        <hr>
+        <form class="row col-4 needs-validation" id="CuentaBancaria" novalidate>
+          <label for="NumeroCuenta" class="form-label">Numero</label>
+          <input type="text" class="form-control" id="NumeroCuenta" name="NumeroCuenta" minlength="10" required><br>
+        </form>
+
+        <button class="btn btn-primary" type="submit">Cerrar</button>
+
+      </div>
+    </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

@@ -1,8 +1,36 @@
 const CART_ID = 25801
 let CART_URL = CART_INFO_URL + "25801" + ".json"
 CART_INFO = {}
-//window.totalCost = document.getElementById("Total")
-//let priceUnit = totalCost / document.getElementById("form1").value
+var forms = document.querySelectorAll('.needs-validation')
+
+
+
+forms[1].addEventListener('submit', function (event) {
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      })
+})
+
+
+
+function disableForm(id){
+  
+  if (id === 'CuentaBancaria'){
+    document.getElementById("CuentaBanc").checked = false
+    document.getElementById("Credito").checked = true
+  }
+  if (id === 'CreditoTarj'){
+    document.getElementById("CuentaBanc").checked = true
+    document.getElementById("Credito").checked = false
+  }
+  
+}
 
 
 
@@ -13,16 +41,26 @@ function courierCost(percentage) {
   let courierCost = (totalCost/100) * percentage
   let total = totalCost + courierCost
 
-  let htmlContentToAppend1 = `${unitCost}`
-  document.getElementById("subTotal").innerHTML = htmlContentToAppend1
-  let htmlContentToAppend2 = `${courierCost}`
-  document.getElementById("costoEnvio").innerHTML = htmlContentToAppend2
-  let htmlContentToAppend3 = `${total}`
-  document.getElementById("total").innerHTML = htmlContentToAppend3
+  let htmlContentToAppend = `
+  <div class = "row"> 
+  <p class="col-lg-6"> Costo Unitario </p>
+  <p class="col-lg-6"> ${unitCost} </p>
+  </div><hr>
+
+  <div class ="row">
+  <p class="col-lg-6"> Costo de Envio </p>
+  <p class="col-lg-6"> ${courierCost} </p>
+  </div><hr>
 
 
-
-
+  <div class="row">
+  <p class="col-lg-6"> Costo Total </p>
+  <p class="col-lg-6"> ${total} </p>
+  </div><hr>
+  
+  `
+  
+  document.getElementById("Costs").innerHTML = htmlContentToAppend
 }
 
 function showRealCost(){
@@ -104,3 +142,4 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 })
+

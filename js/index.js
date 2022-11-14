@@ -1,35 +1,29 @@
+var forms = document.querySelectorAll('.needs-validation')
 const email = document.getElementById("email")
-const password1 = document.getElementById("password1")
-const boton = document.getElementById("regBtn");
 
-document.addEventListener("DOMContentLoaded", function(){
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
     
 
-    boton.addEventListener("click", e=>{
-        let entrar = false
-        if(email.value.length == 0){
-            entrar = true
-            //alert("mail corto")
+    forms[0].addEventListener('submit', function (event) {
+  
+        forms[0].classList.add('was-validated')
+        datosFormulario = true
+        if (!forms[0].checkValidity()) {
+            datosFormulario = false
+            event.preventDefault()
+            event.stopPropagation()
+        } else {
     
+            localStorage.setItem("usuario_loggeado", email.value)
+            window.location.href = 'pagina_principal.html'
         }
-    
-        if(password1.value.length == 0 ){
-            entrar = true
-            //alert("contraseña corta")
-        }else{
-            localStorage.setItem("usuario_loggeado",email.value)
-        }
-    
-        if (!entrar){
-            location.href = "pagina_principal.html" 
-        }
+        
     })
-
-    if(localStorage.getItem("usuario_loggeado")!== undefined){
-        localStorage.removeItem("usuario_loggeado")
-    }
-    
-    
-    
 })
+
+
 

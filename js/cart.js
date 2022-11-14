@@ -4,28 +4,94 @@ CART_INFO = {}
 var forms = document.querySelectorAll('.needs-validation')
 
 
-
 forms[1].addEventListener('submit', function (event) {
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
+  
+  let datosFormulario = true
 
-        form.classList.add('was-validated')
-      })
+  if (!forms[0].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+  if (!forms[1].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  if (!forms[3].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  if (!forms[4].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  if (!forms[5].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  if (!forms[7].checkValidity()) {
+    datosFormulario = false
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
+  forms[0].classList.add('was-validated')
+  forms[1].classList.add('was-validated')
+  forms[3].classList.add('was-validated')
+  forms[4].classList.add('was-validated')
+  forms[5].classList.add('was-validated')
+  forms[7].classList.add('was-validated')
+
+  if (!datosFormulario){
+    document.getElementById("pagosErrAlert").style.display="block"
+    btnModalPagos.classList.add("is-invalid") 
+  }else {
+    
+    document.getElementById("pagosErrAlert").style.display="none"
+    btnModalPagos.classList.remove("is-invalid")
+
+    if(document.getElementById("CuentaBanc").checked){
+      let htmlContentToAppend = `<div>Cuenta Bancaria</div>`
+      document.getElementById("metodoPago").innerHTML= htmlContentToAppend
+
+    }
+
+    if(document.getElementById("Credito").checked){
+
+      let htmlContentToAppend = `<div>Tarjeta de Credito</div>`
+      document.getElementById("metodoPago").innerHTML = htmlContentToAppend
+    }
+
+    
+  }    
 })
+
 
 
 
 function disableForm(id){
   
   if (id === 'CuentaBancaria'){
+    document.getElementById("NumeroCuenta").disabled = true
+    document.getElementById("NumeroTarj").disabled = false
+    document.getElementById("CodigoSeg").disabled = false
+    document.getElementById("Vencimiento").disabled = false
     document.getElementById("CuentaBanc").checked = false
     document.getElementById("Credito").checked = true
   }
   if (id === 'CreditoTarj'){
+    document.getElementById("NumeroCuenta").disabled = false
+    document.getElementById("NumeroTarj").disabled = true
+    document.getElementById("CodigoSeg").disabled = true
+    document.getElementById("Vencimiento").disabled = true
     document.getElementById("CuentaBanc").checked = true
     document.getElementById("Credito").checked = false
   }
@@ -106,7 +172,7 @@ function showCartInfo(){
         </div>
         <div class="col-2 col-lg-2 col-xl-2 d-flex">
         <button class="btn btn-link px-1"
-          onclick="this.parentNode.querySelector('input[type=number]').stepDown(); showRealCost();courierCost((document.querySelector('input[type=radio][name=courier]:checked')).value);">
+          onclick="this.parentNode.querySelector('input[type=number]').stepDown(); showRealCost();courierCost((document.querySelector('input[type=radio][name=radio-stacked]:checked')).value);">
           <i class="fas fa-minus"></i>
         </button>
 
@@ -114,7 +180,7 @@ function showCartInfo(){
           class="form-control form-control-sm" />
 
         <button class="btn btn-link px-1"
-          onclick="this.parentNode.querySelector('input[type=number]').stepUp(); showRealCost();courierCost((document.querySelector('input[type=radio][name=courier]:checked')).value);">
+          onclick="this.parentNode.querySelector('input[type=number]').stepUp(); showRealCost();courierCost((document.querySelector('input[type=radio][name=radio-stacked]:checked')).value);">
           <i class="fas fa-plus"></i>
         </button>
         </div>

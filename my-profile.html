@@ -46,11 +46,63 @@
           </li>
           <li class="nav-item">
           </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="Usuario" data-bs-toggle="dropdown" aria-expanded="false">
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="Usuario">
+                <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
+                <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
+                <li><a class="dropdown-item" href="index.html">Cerrar Sesion</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <main>
+    <form class="row g-3 needs-validation" novalidate>
+      <h3>Mi Perfil</h3>
+      <hr>
+      <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">Primer Nombre*</label>
+        <input type="text" class="form-control" id="PNombre" value="" required>
+        <div class="invalid-feedback">
+          Favor ingresa tú primer nombre 
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="validationCustom02" class="form-label">Segundo Nombre</label>
+        <input type="text" class="form-control" id="SNombre" value="">
+      </div>
+      <div class="col-md-4">
+        <label for="validationCustom03" class="form-label">Primer Apellido*</label>
+        <input type="text" class="form-control" id="PApellido" value="" required>
+        <div class="invalid-feedback">
+          Favor ingresa tú primer apellido
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <label for="validationCustom04" class="form-label">Segundo Apellido</label>
+        <input type="text" class="form-control" id="SApellido" value="">
+      </div>
+      <div class="col-md-4">
+        <label for="validationCustom05" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="validationCustom05" value="">
+      </div>
+      <div class="col-md-3">
+        <label for="validationCustom05" class="form-label">Telefono*</label>
+        <input type="text" class="form-control" id="Tel" minlength="9" value="" required>
+        <div class="invalid-feedback">
+          Favor ingresa un telefono valido, recuerda ingresar la caracteristica del pais
+        </div>
+      </div>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+      </div>
+    </form>
   </main>
   <footer class="text-muted">
     <div class="container">

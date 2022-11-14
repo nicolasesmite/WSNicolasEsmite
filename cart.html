@@ -37,7 +37,7 @@
   </nav>
   <main>
     <div class="container">
-      <section class="h-100 h-custom" style="background-color: #1b0f59;">
+      <section class="h-100 h-custom" style="background-color: #aca7c2;">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12">
@@ -55,17 +55,25 @@
           </div>
         </div>
       </section>
-      <div class="container col-12 justify-content-center" style="background-color: #5d74da;">
+      <div class="container col-12 justify-content-center" style="background-color: #cfd1d8;">
         <div>
           <h3>Tipo de envío</h3>
-          <form class="needs-validation">
+          <form class="form-checked needs-validation">
             <div>
-            <input type="radio" id="express" name="courier" value="15" onclick="courierCost(15)">
-            <label>Envío Express 2 a 5 dias (15%)</label><br>
-            <input type="radio" id="premium" name="courier" value="7" onclick="courierCost(7)">
-            <label>Envío Premium 5 a 8 dias (7%)</label><br>
-            <input type="radio" id="normal" name="courier" value="5" onclick="courierCost(5)">
-            <label>Envío Normal 12 a 15 dias (5%)</label>
+            <div class="form-checked">
+              <input type="radio" class="form-check-input" id="express" name="radio-stacked" value="15" onclick="courierCost(15)"
+                required>
+              <label class="form-check-label" for="express">Envío Express 2 a 5 dias (15%)</label><br>
+            </div>
+            <div class="form-checked">
+              <input type="radio" class="form-check-input" id="premium" name="radio-stacked" value="7" onclick="courierCost(7)" required>
+              <label class="form-check-label" for="premium">Envío Premium 5 a 8 dias (7%)</label><br>
+            </div>
+            <div class="form-checked">
+              <input type="radio" class="form-check-input" id="normal" name="radio-stacked" value="5" onclick="courierCost(5)" required>
+              <label class="form-check-label" for="normal">Envío Normal 12 a 15 dias (5%)</label>
+              <div class="invalid-feedback">Se debe seleccionar una opcion de envio </div>
+            </div>
             </div>
             <div id="invalid-feedback">
             </div>
@@ -96,16 +104,26 @@
               </div>
             </div>
 
-            <button class="btn btn-primary" type="submit">Finalizar Compra</button>
+            <div>
+              <h2> Costos </h2>
+              <div class="container col-12" id="Costs">
+              </div>
+            </div>
+            <div class="mt-2">
+              <button class="btn btn-primary" type="submit">Finalizar Compra</button>
+            </div>
+
+            
           </form>
         </div>
-        <div class ="container" style="background-color: #1f369d" id="Costs">
-        </div>
+        
         <div class="col-sm-12 position-relative">
           <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal" id="btnModalPagos"
             data-bs-target="#modalPagos">Seleccionar metodo de pago</button>
             <div class="invalid-tooltip" id="pagosErrAlert">
               Debe seleccionar una forma de pago
+            </div>
+            <div id="metodoPago">
             </div>
         </div>
 
@@ -132,33 +150,51 @@
           <h1 class="modal-title fs-5">Metodos de Pago</h1>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div>
-          <input type="radio" id="Credito" name="Credito" value="Credito" onclick="disableForm('CuentaBancaria')">
-          <label>Tarjeta de Credito</label>
-        </div><hr>
-        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+        <form class="needs-validation" novalidate>
+          <div>
+            <input type="radio" id="Credito" name="Credito" value="Credito" onclick="disableForm('CuentaBancaria')">
+            <label>Tarjeta de Credito</label>
+          </div>
+          <hr>
+        </form>
+        <form class="needs-validation" id="CreditoTarj" novalidate>
           <label for="NumeroTarj" class="form-label">Numero de Tarjeta</label>
           <input type="text" class="form-control" id="NumeroTarj" name="NumeroTarj" minlength="16" required>
+          <div class="invalid-feedback">
+            El numero de tarjeta no es correcto
+          </div>
         </form>
-        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+        <form class="needs-validation" id="CreditoTarj" novalidate>
           <label for="CodigoSeg" class="form-label">CCV</label>
           <input type="text" class="form-control" id="CodigoSeg" name="CodigoSeg" minlength="3" required>
+          <div class="invalid-feedback">
+            El codigo de verificacion no es correcto
+          </div>
         </form>
-        <form class="row col-4 needs-validation" id="CreditoTarj" novalidate>
+        <form class="needs-validation" id="CreditoTarj" novalidate>
           <label for="Vencimiento" class="form-label">Vencimiento</label>
           <input type="date" class="form-control" id="Vencimiento" name="Vencimiento" required>
+          <div class="invalid-feedback">
+            El Vencimiento no es correcto
+          </div>
         </form>
-        <div>
-          <input type="radio" id="CuentaBanc" name="CuentaBancaria" value="CuentaBancaria" onclick="disableForm('CreditoTarj')">
-          <label>Cuenta Bancaria</label>
-        </div>
+        <form class="needs-validation" novalidate>
+          <div>
+            <input type="radio" id="CuentaBanc" name="CuentaBancaria" value="CuentaBancaria"
+              onclick="disableForm('CreditoTarj')">
+            <label>Cuenta Bancaria</label>
+          </div>
+        </form>
         <hr>
-        <form class="row col-4 needs-validation" id="CuentaBancaria" novalidate>
+        <form class="needs-validation" id="CuentaBancaria" novalidate>
           <label for="NumeroCuenta" class="form-label">Numero</label>
           <input type="text" class="form-control" id="NumeroCuenta" name="NumeroCuenta" minlength="10" required><br>
+          <div class="invalid-feedback">
+            El numero de cuenta no es correcto
+          </div>
         </form>
 
-        <button class="btn btn-primary" type="submit">Cerrar</button>
+        <button class="btn btn-primary" id="closeModal" data-bs-dismiss="modal" aria-label="Close" type="submit">Cerrar</button>
 
       </div>
     </div>
